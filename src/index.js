@@ -117,33 +117,37 @@ class VRScene extends Component {
 						)
 					})
 				  }
-	    	</Entity>
+	    		</Entity>
 		)
-	};
+	}
 
-	renderStartScreen = () => (
-		<div className="start">
-			<h1>VR GALLERIA TEST</h1>
-			<p>If you're on mobile, turn your phone sideways and the volume up to experience this bitch</p>
-			<span className="start__btn" onClick={()=>this.startRoom()}>Enter</span>
-		</div>
-	);
+	renderStartScreen() { 
+		return (
+			<div className='start'>
+				<h1>VR GALLERIA TEST</h1>
+				<p>If you/'re on mobile, turn your phone sideways and the volume up to experience this bitch</p>
+				<span className="start__btn" onClick={() => this.startRoom()}>Enter</span>
+			</div>
+		);
+	}
 
-	renderCeiling = () => (
-		<Entity
-			geometry='primitive: box'
-			rotation={'90 90 0'}
-			position={'0 ' + String(wallHeight*1.5) + ' 0'}
-			animation__pos={{property: 'position', dur: 9000, loop: false, to: '0 30 0'}}>
-			<ImageTile
-				imgsrc={ImageUtil.getRandomImage()}
-				width={wallWidth}
-				height={wallHeight}
-				position={'0 0 1'}
-			/>
-			<Entity text={{ text: 'Rumple Dumple', size: 7}} position='-7 0 1' />
-		</Entity>
-	);
+	renderCeiling() {
+		return (
+			<Entity
+				geometry='primitive: box'
+				rotation={'90 90 0'}
+				position={'0 ' + String(wallHeight*1.5) + ' 0'}
+				animation__pos={{property: 'position', dur: 9000, loop: false, to: '0 30 0'}}>
+				<ImageTile
+					imgsrc={ImageUtil.getRandomImage()}
+					width={wallWidth}
+					height={wallHeight}
+					position={'0 0 1'}
+				/>
+				<Entity text={{ text: 'Rumple Dumple', size: 7}} position={'-7 0 1'} />
+			</Entity>
+		)
+	}
 
 	render() {
 		const willRenderRoom = (this.state.start) ? this.renderRoom() : this.renderStartScreen();
@@ -153,27 +157,27 @@ class VRScene extends Component {
 				<Camera></Camera>
 
 				<Entity light={{type: 'ambient', color: '#888'}}/>
-        <Entity light={{type: 'directional', intensity: 0.5}} position='-1 1 0'/>
-        <Entity light={{type: 'directional', intensity: 1}} position='1 1 0'/>
+				<Entity light={{type: 'directional', intensity: 0.5}} position='-1 1 0'/>
+				<Entity light={{type: 'directional', intensity: 1}} position='1 1 0'/>
 
 				<Sky color="#FFFFFF" />
 
 				{willRenderRoom}
 				{ceilingDrop}
 
-        <Entity
-          animation__rot={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-          animation__sca={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
-          geometry='primitive: box'
-          material={{color: "#4286f4", opacity: 0.6}}
-          position='0 -0.5 -3'>
-          <Entity
-            animation__scale={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '2 2 2'}}
-            geometry='primitive: box; depth: 0.2; height: 0.2; width: 0.2'
-            material={{color: '#24CAFF'}}/>
-        </Entity>
+				<Entity
+				  animation__rot={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
+				  animation__sca={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
+				  geometry='primitive: box'
+				  material={{color: "#4286f4", opacity: 0.6}}
+				  position={'0 -0.5 -3'}>
+				  <Entity
+				    animation__scale={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '2 2 2'}}
+				    geometry='primitive: box; depth: 0.2; height: 0.2; width: 0.2'
+				    material={{color: '#24CAFF'}}/>
+				</Entity>
 
-        <Floor color="#EEE" width={wallWidth} height={wallWidth} />
+				<Floor color="#EEE" width={wallWidth} height={wallWidth} />
 			</Scene>
 		);
 	}
