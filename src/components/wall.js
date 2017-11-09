@@ -27,26 +27,26 @@ class Wall extends Component {
 		); 
 	}
 
-  render() {
-  	const {rotation, position, imgSet, width, height, color, color2, animate} = this.props;
-  	const rows = 2;
-  	const animateProps = (animate) ? {property: 'material.color', dur: 1000, dir: 'alternate', loop: true, from: "#fff", from: color, to: color2} : {};
-  	return (
-  		<Entity
-		    geometry={{primitive: 'box', width: width, height: height, depth: 0}}
-		    material={{shader: 'flat', color: '#fff'}}
-		    rotation={rotation}
-		    position={position}
-		    animation__col={animateProps}
+	render() {
+	const {rotation, position, imgSet, width, height, color, color2, animate} = this.props;
+	const rows = 2;
+	const animateProps = (animate) ? {property: 'material.color', dur: 1000, dir: 'alternate', loop: true, from: "#fff", from: color, to: color2} : {};
+	return (
+		<Entity
+			geometry={{primitive: 'box', width: width, height: height, depth: 0}}
+			material={{shader: 'flat', color: '#fff'}}
+			rotation={rotation}
+			position={position}
+			animation__col={animateProps}
 		  >
-		  	{
-		  		imgSet.map((img, i) => {
-		  			return( this.renderImage(img, i, imgSet.length, rows, width, height, animate) );
-		  		}) 
-		  	}
+			{
+				imgSet.map((img, i) => {
+					return( this.renderImage(img, i, imgSet.length, rows, width, height, animate) );
+				}) 
+			}
 		  </Entity>
-  	);
-  }
+	);
+	}
 }
 
 /*
