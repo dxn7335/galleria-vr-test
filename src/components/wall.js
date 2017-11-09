@@ -54,12 +54,12 @@ class Wall extends Component {
  *	position: 'X Y Z' (by meters)
  */
  Wall.PropTypes = {
- 		rotation: PropTypes.string,
- 		position: PropTypes.string,
- 		imgSet: PropTypes.array,
- 		width: PropTypes.number,
- 		height: PropTypes.number,
- 		animate: PropTypes.bool
+	rotation: PropTypes.string,
+	position: PropTypes.string,
+	imgSet: PropTypes.array,
+	width: PropTypes.number,
+	height: PropTypes.number,
+	animate: PropTypes.bool
  }
 
 export default Wall;
