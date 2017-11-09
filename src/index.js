@@ -60,7 +60,7 @@ class VRScene extends Component {
 		this.setState({start: true});
 		this.startAnimationListeners();
 		this.audio.play();
-	};
+	}
 
 	/* (Workaround) Delay property of aframe animation doesn't work */
 	startAnimationListeners() {
@@ -69,7 +69,7 @@ class VRScene extends Component {
 		setTimeout(this.startCeilingDrop, 33000);
 	}
 
-	startRoomRotate = () => this.setState({roomRotate: 1});
+	startRoomRotate = () = (this.setState({roomRotate: 1}));
 
 	startWallAnimation = () => this.setState({wallAnimation: true});
 
@@ -93,40 +93,37 @@ class VRScene extends Component {
 
 	renderRoom() { 
 		const rotation = (this.state.roomRotate) ? {property: 'rotation', dur: 3000, easing: 'linear', delay: 7000, loop: true, to: '0 360 0'} : {};
-		console.log(this.state.wallAnimation);
 		return (
 			<Entity
 				ref="room"
 				key={this.state.roomRotate || this.state.wallAnimation} //hack
 				geometry='primitive: box'
 				material={{opacity: 1}}
-				animation__rot={rotation}
-				>
-	      {
-	      	wallDimensions.map((wall, i) => {
-	      		return (
-	      			<Wall 
-	      				key={i}
-				      	imgSet={this.state.imageSets[i]}
-				      	position={wall.pos}
-				      	width={wallWidth}
-				      	height={wallHeight}
-				      	rotation={wall.rot}
-				      	color={this.getRandomColor()}
-				      	color2={this.getRandomColor()}
-				      	altPosition={wall.altpos}
-				      	animate={this.state.wallAnimation}
-				      />
-	      		)
-	      	})
-	      }
-	    </Entity>
+				animation__rot={rotation}>
+				  {
+					wallDimensions.map((wall, i) => {
+						return (
+							<Wall 
+								key={i}
+								imgSet={this.state.imageSets[i]}
+								position={wall.pos}
+								width={wallWidth}
+								height={wallHeight}
+								rotation={wall.rot}
+								color={this.getRandomColor()}
+								color2={this.getRandomColor()}
+								altPosition={wall.altpos}
+								animate={this.state.wallAnimation} />
+						)
+					})
+				  }
+	    	</Entity>
 		)
 	};
 
 	renderStartScreen = () => (
 		<div className="start">
-			<h1>ALAN GALLERIA</h1>
+			<h1>VR GALLERIA TEST</h1>
 			<p>If you're on mobile, turn your phone sideways and the volume up to experience this bitch</p>
 			<span className="start__btn" onClick={()=>this.startRoom()}>Enter</span>
 		</div>
@@ -137,8 +134,7 @@ class VRScene extends Component {
 			geometry='primitive: box'
 			rotation={'90 90 0'}
 			position={'0 ' + String(wallHeight*1.5) + ' 0'}
-			animation__pos={{property: 'position', dur: 9000, loop: false, to: '0 30 0'}}
-		>
+			animation__pos={{property: 'position', dur: 9000, loop: false, to: '0 30 0'}}>
 			<ImageTile
 				imgsrc={ImageUtil.getRandomImage()}
 				width={wallWidth}
